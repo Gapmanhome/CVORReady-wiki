@@ -1,9 +1,9 @@
 ---
 type: value
-status: "❓"
-brian_certified: false
-primary_source: "HTA Reg 596 (to confirm)"
-secondary_source: ""
+status: "✅"
+certified_by: "Brian — verbal via Gary (per 2026-06-29 kickoff)"
+primary_source: "HTA s.199(1) (effective 2025-01-01)"
+secondary_source: "cross-referenced against 3+ sources, primary each"
 last_reviewed: "2026-06-29"
 used_by_forms: []
 ---
@@ -11,15 +11,17 @@ used_by_forms: []
 
 **Current value:** $5,000  ·  **Replaces:** $2,000
 
-## Sources
-- **Primary:** HTA Reg 596 (per handoff) — **to confirm**.
-- **Open question:** RULES Domain E lists removed string **"O. Reg. 85/04"**. Unresolved whether
-  85/04 was the *old collision cite* (so the fix was figure **and** instrument) or a different
-  value's citation. Brian certifies the **figure and the instrument**, not just the dollar amount.
+## Certified statement
+"**$5,000 combined damage, or any personal injury.**"
 
-## Status note
-❓ pending Brian. Seeded from handoff + RULES; not certified. Do not render as authoritative until
-Brian confirms via Gary.
+## Sources
+- **Primary:** **HTA s.199(1)**, effective Jan 1 2025.
+- **No separate CVOR threshold** — it tracks s.199.
+- *Resolved:* the earlier *HTA Reg 596* guess and the *O. Reg. 85/04* question were superseded by
+  the certified cite above.
+
+## Status
+✅ certified by Brian (verbal attestation via Gary, recorded). Not an AI verdict.
 
 ## Used by
-(to be populated by the forms-accuracy audit, Tier 4)
+(to be populated by the forms-accuracy audit)
