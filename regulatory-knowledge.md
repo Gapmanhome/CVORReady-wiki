@@ -4,6 +4,7 @@ status: certified
 certified_by: "Brian — verbal attestation via Gary (recorded per 2026-06-29 kickoff)"
 basis: "each value cross-referenced against 3+ sources, primary each"
 last_reviewed: "2026-06-29"
+canonical_value_store: true
 ---
 # Regulatory Knowledge — Certified Ledger
 
@@ -11,6 +12,12 @@ The CVORReady / ExeSketch regulatory values, as **certified by Brian** (verbal a
 Gary; each cross-referenced against 3+ sources, primary each). This is the record of what was
 certified and what remains open — not an AI verdict. Values below are ✅ because Brian certified
 them, logged as a verbal-via-Gary attestation per the standing convention.
+
+> **This ledger is the canonical store for compliance values** — figure, sources, and Brian's cert
+> record live here. Value pages under `pages/values/` are thin pointers that track page-local data
+> (e.g. `used_by_forms`); on any conflict, this ledger wins. New value pages are created **lazily**,
+> only when a form references the value — so the absence of a page for a certified value is by
+> design, not drift. The derived `index.md` mirrors this ledger for value status.
 
 ---
 
