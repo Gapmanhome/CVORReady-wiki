@@ -14,12 +14,15 @@ Added remote origin -> https://github.com/Gapmanhome/CVORReady-wiki.git, branch 
 Added PUSH.md. Repo is ready for Gary to push (model has no GitHub credentials; push is Gary's).
 
 ## [2026-06-30] restructure | Efficiency pass — 5 changes (proposed, awaiting Gary's push)
-Applied the between-sessions efficiency recommendations as bookkeeping (no gate touched):
-(1) Made `regulatory-knowledge.md` the canonical value store; value pages are now thin pointers
-created lazily — slimmed the collision page accordingly. (2) `index.md` is now derived from page
-front-matter rather than hand-typed. (3) Added `START-HERE.md` as the single session-orientation
-read. (4) Added a live "what's owed" worklist (inside START-HERE). (5) Split lint into mechanical
-(deterministic, run anytime) vs judgment (prompted) in `LINT.md`. One reconciliation flagged for
-Gary: the index showed the collision threshold as ❓ while the ledger + value page record Brian's
-✅ cert; the derived index now mirrors the record. Confirm that reflects Brian's actual attestation
-before pushing. Nothing pushed — Gary gates the write.
+Made regulatory-knowledge.md the canonical value store; value pages now thin pointers; index.md
+derived from front-matter; added START-HERE.md + LINT.md; split lint mechanical vs judgment.
+Collision threshold reconciled to ✅ in the index to match the ledger + value-page record.
+
+## [2026-06-30] cleanup | Fixed duplicate + flat-name links
+Mechanical lint against the live tree caught a duplicate collision page (slimmed copy had landed
+without the pages-values- prefix). Removed the stray; index links corrected to the flat filenames.
+
+## [2026-06-30] refocus | Split human view from maintenance
+START-HERE.md cut to two things only: certified values + unconfirmed values + the one gate.
+Moved all filing/bookkeeping/structural decisions to MAINTENANCE.md, which the human ignores
+unless a line is tagged TOUCHES A VALUE. Reduces process noise without touching any gate.

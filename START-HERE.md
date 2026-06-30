@@ -1,34 +1,25 @@
 # Start here
 
-The one file to read first each session. 30 seconds to orient, then go to `index.md`.
+Two things only. If you read nothing else, read this.
 
-## What this repo is
-A learning-loop wiki. Every session reads it, then writes back the smallest useful trace, so the
-next session inherits what was learned instead of re-deriving it. The repo is the memory; the model
-is not. (Full version: `README.md`.)
+## 1. What's settled (certified by Brian — trust these)
+- **Collision reporting threshold — $5,000** (combined damage, or any personal injury).
+- **HOS cycle resets — 36 / 72 hours.**
+- **Cargo securement (NSC Std 10) — load-check timing** (before driving + within 80 km; re-check at the earliest of duty-change / 3 hrs / 240 km).
+- **Critical-injury reporting** (OHSA: notify immediately + written report in 48 hrs; on-highway MVC carve-out applies).
+- **MELT — three states** (Exempt / Required / Verify; Verify is the default; read the Class A change date from licence history).
 
-## Last session
-**2026-06-30** — Efficiency restructure (proposed, awaiting Gary's push):
-- `regulatory-knowledge.md` made the canonical value store; value pages are now thin pointers.
-- `index.md` is now derived from page front-matter; collision threshold reconciled to ✅.
-- This file (`START-HERE.md`) and `LINT.md` added.
+Full detail + sources: `regulatory-knowledge.md`. That ledger is the source of truth for every value.
 
-## What's owed (the live worklist)
-The only things that genuinely must carry across sessions. Knock these down, don't re-discover them.
+## 2. What's NOT settled (do not trust yet — confirm before use)
+- **Medical-exam interval — 730 days (system) vs 1095 (MTO).** ⚠️ Highest priority. Possible contradiction, and it drives the scoring engine. Resolve this first.
+- **Still awaiting Brian (via Gary):** HOS log-audit interval · O. Reg. 638A mentorship · 30-day accident-preventability window · document-retention conventions · Ontario HOS set-fine.
+- **`$19,277`** — bad value removed; correct replacement not yet known.
 
-- [ ] **Staging Mirage sweep** — class hit 3 instances; `sweep_done: false`. Owed per the rule.
-- [ ] **Medical-exam interval — 730 d (system) vs MTO 1095 d.** ❓ HIGH priority — possible
-      contradiction, touches the scoring engine. Confirm before treating as settled.
-- [ ] **❓ values awaiting Brian (via Gary):** HOS log-audit interval · O. Reg. 638A mentorship ·
-      30-day accident-preventability window · document-retention conventions · Ontario HOS set-fine.
-- [ ] **`$19,277`** — bad string removed; correct replacement value / disposition still unknown.
-- [ ] **Schema drafts unmerged** — CLAUDE.md §XI (iteration ritual) and WIKI.md §9 (wiki shape)
-      are still PROPOSED in `schema/`. Cited around the repo as if live; not canon until Gary merges.
-- [ ] **Dead-End Extraction** and **Half-Rendered Change** — each at 1 instance, sweeps not yet run.
+If a value isn't in section 1, treat it as section 2 — unconfirmed.
 
-## The gates (don't let efficiency leak into these)
-- Model auto-owns **bookkeeping only** (drafting pages, cross-refs, index/log, flagging).
-- **Gary** gates every decision and does every commit/push. The model never publishes.
-- Compliance values stay **❓ until Brian certifies — through Gary.** The model never writes ✅/❌
-  itself and never contacts Brian.
-- Promoting a lesson into `CLAUDE.md` / `RULES.md` is **Gary-only**.
+## The one rule that protects all of this
+A value is settled **only** when Brian certifies it, through Gary. The model never marks a value ✅ on its own. Gary does every push. That's the whole guardrail — a wrong value reaching an auditor is the failure that can't be undone.
+
+---
+*Filing, cross-refs, sweeps, schema, naming — all moved to `MAINTENANCE.md`. You don't need to open it unless something there is flagged as touching a value.*
