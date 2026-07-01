@@ -58,6 +58,9 @@ Brian-certified via Gary; pressure-tested against live code (2026-07-01). Commer
   - **46–64 → every 3 years (1095 d).**
   - **65+ → every 1 year (365 d).**
   Cite: **MTO / CCMTA national medical standard** (Gary: default to MTO; O. Reg. 340/94 not pinned).
+  Brian confirmed 2026-07-01 against 3 official sources: ontario.ca commercial-driver medical
+  standard; MTO Truck Handbook ("Keeping your licence"); mto.gov.on.ca medical/vision/hearing
+  standards (which names CCMTA as the assessing authority). Boundary: age 46 sits in the 3-yr band.
   Condition-specific MTO reviews can shorten any band — case-by-case, not the base schedule.
   > ⚠️ **Implementation defect (open, not a value question):** live code contradicts this cert in
   > two places — `carrierready-content.ts:107` prints "every 2 years (730 days)" for 46–64 in an

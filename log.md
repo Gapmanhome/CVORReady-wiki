@@ -36,3 +36,10 @@ verified on STAGING write-paths only (prod/read-path outstanding); Domain C orac
 E1 phantom codes still present; E2 logo is orphan (not embedded) — delete; gitleaks still not truly
 run. Discrepancy flagged: only one PDF generator (PDFKit) found — Half-Rendered Change class premise
 under review. Staging medical-interval candidate promoted → delete. Nothing pushed; Gary gates.
+
+## [2026-07-01] certify | Medical-exam interval — Brian confirmed with sources
+Brian confirmed the age-banded schedule (1825/1095/365) against 3 official sources (ontario.ca
+commercial-driver standard, MTO Truck Handbook, mto.gov.on.ca / CCMTA). Ledger cite strengthened
+with the sourced basis + the age-46 boundary. Value fully certified. Remaining: apply the code
+correction (content.ts:107 auditor-facing + scoring.ts:56) via the CVORReady Replit prompt — the
+live product still ships 730 until that runs.
