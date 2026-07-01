@@ -3,7 +3,7 @@ type: regulatory-ledger
 status: certified
 certified_by: "Brian — verbal attestation via Gary (recorded per 2026-06-29 kickoff)"
 basis: "each value cross-referenced against 3+ sources, primary each"
-last_reviewed: "2026-06-29"
+last_reviewed: "2026-07-01"
 canonical_value_store: true
 ---
 # Regulatory Knowledge — Certified Ledger
@@ -51,16 +51,26 @@ them, logged as a verbal-via-Gary attestation per the standing convention.
   - **Manual confirmation is authoritative** and is recorded.
   - Read the **Class A class-change date from licence history** — *not* "date first licensed."
 
+### Commercial-driver medical-exam interval — age-banded ✅ (certified 2026-07-01)
+Brian-certified via Gary; pressure-tested against live code (2026-07-01). Commercial Class A–F,
+**age-banded** (not a single interval):
+  - **Under 46 → every 5 years (1825 d).**
+  - **46–64 → every 3 years (1095 d).**
+  - **65+ → every 1 year (365 d).**
+  Cite: **MTO / CCMTA national medical standard** (Gary: default to MTO; O. Reg. 340/94 not pinned).
+  Condition-specific MTO reviews can shorten any band — case-by-case, not the base schedule.
+  > ⚠️ **Implementation defect (open, not a value question):** live code contradicts this cert in
+  > two places — `carrierready-content.ts:107` prints "every 2 years (730 days)" for 46–64 in an
+  > **auditor-facing document** (URGENT), and `scoring.ts:56` returns 730 in the (currently dead)
+  > interval function. The *value* is certified here; the *code* must be corrected to match. Tracked
+  > in `security-round2-scorecard.md`.
+
 ---
 
 ## OPEN — NOT in the certified set (carry as ❓; confirm before treating as done)
 
-These were enumerated previously (WIKI §7 / prior cert-list draft) but do **not** appear in the
-2026-06-29 certified summary. Per the "flagged ≠ done" lesson, none are assumed resolved.
+Per the "flagged ≠ done" lesson, none are assumed resolved.
 
-- **Medical-exam interval — 730 d (system) vs MTO 1095 d.** ❓ Highest-priority gap: previously
-  flagged as a likely **contradiction**, and it touches the **scoring engine's** medical-interval
-  logic. If contradicted, this is HIGH severity (RULES §4). Confirm whether certified elsewhere.
 - **HOS log-audit interval.** ❓
 - **O. Reg. 638A mentorship requirement.** ❓
 - **30-day accident-preventability window.** ❓
@@ -78,3 +88,6 @@ These were enumerated previously (WIKI §7 / prior cert-list draft) but do **not
 - **Single shared DB:** ExeSketch dev = prod (one `DATABASE_URL`); any content edit is live to
   clients immediately. Both PDF generators (Puppeteer/Handlebars + PDFKit/AcroForm) render from
   the same `carrierready_templates.content` column — fix the DB content, prove both renders.
+  > ⚠️ **Discrepancy flagged 2026-07-01:** the Replit pass found only ONE generator (PDFKit); no
+  > Puppeteer generator located. Either it was removed (this note + the Half-Rendered Change class
+  > are stale) or the agent missed it. Confirm before relying on the two-generator assumption.

@@ -26,3 +26,13 @@ without the pages-values- prefix). Removed the stray; index links corrected to t
 START-HERE.md cut to two things only: certified values + unconfirmed values + the one gate.
 Moved all filing/bookkeeping/structural decisions to MAINTENANCE.md, which the human ignores
 unless a line is tagged TOUCHES A VALUE. Reduces process noise without touching any gate.
+
+## [2026-07-01] verify | Replit pass reconciled — medical interval promoted + Round 2 scorecard
+Replit read-only audit returned. Medical-exam interval pressure-tested: regulation confirms Brian
+(age-banded 1825/1095/365) — PROMOTED to ledger as ✅. Code diverges in two places (scoring.ts:56
+dead fn; carrierready-content.ts:107 auditor-facing doc text = "2 years/730 d" — URGENT fix, TOUCHES
+A VALUE). Round 2 status captured in new security-round2-scorecard.md, evidence-backed: Domain A
+verified on STAGING write-paths only (prod/read-path outstanding); Domain C oracle test broken (ESM);
+E1 phantom codes still present; E2 logo is orphan (not embedded) — delete; gitleaks still not truly
+run. Discrepancy flagged: only one PDF generator (PDFKit) found — Half-Rendered Change class premise
+under review. Staging medical-interval candidate promoted → delete. Nothing pushed; Gary gates.
