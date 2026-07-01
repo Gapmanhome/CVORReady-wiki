@@ -1,30 +1,43 @@
 # Start here
 
-Two things only. If you read nothing else, read this.
+Read this first. Two products, the certified values, and the one gate.
+
+## FIRST: two separate products (do not blend them)
+- **CVORReady (cvorready.ca)** — the platform: scoring, forms, UI, notifications. Renders from
+  SOURCE at generation time. ONE generator. NO live content DB.
+- **ExeSketch (exesketch.com)** — generates the compliance documents only. LIVE content DB, TWO
+  generators, content live at generation.
+
+Same document codes exist in both with different meanings. **Every task/prompt must name its
+target product** — a prompt run against the wrong one returns "clean" and looks done.
 
 ## 1. What's settled (certified by Brian — trust these)
-- **Collision reporting threshold — $5,000** (combined damage, or any personal injury).
-- **HOS cycle resets — 36 / 72 hours.**
-- **Cargo securement (NSC Std 10) — load-check timing** (before driving + within 80 km; re-check at the earliest of duty-change / 3 hrs / 240 km).
-- **Critical-injury reporting** (OHSA: notify immediately + written report in 48 hrs; on-highway MVC carve-out applies).
-- **MELT — three states** (Exempt / Required / Verify; Verify is the default; read the Class A change date from licence history).
-- **Medical-exam interval — age-banded** (Class A–F): under 46 → 5 yr · 46–64 → 3 yr · 65+ → 1 yr. ⚠️ *Value certified; a live CODE defect still prints "2 years" for 46–64 in an auditor-facing doc — see scorecard, fix pending.*
+- **Collision threshold — $5,000** (combined damage, or any injury). *code-audit pending*
+- **HOS cycle resets — 36 / 72 hours.** *code-audit pending*
+- **Cargo securement (NSC Std 10) — 80 km first / 240 km / 3 hrs / duty-change.** CVORReady fixed; ExeSketch clean.
+- **Critical-injury reporting** (OHSA: immediate + 48-hr written; MVC carve-out). *code-audit pending*
+- **MELT — three states** (Verify is default). *code-audit pending*
+- **Medical-exam interval — age-banded** (Class A–F): under 46 → 5 yr · 46–64 → 3 yr · 65+ → 1 yr.
+  Cite **O. Reg. 340/94 + CCMTA**. CVORReady CORRECTED across 9 locations 2026-07-01; scoring verified.
 
-Full detail + sources: `regulatory-knowledge.md`. That ledger is the source of truth for every value.
+Full detail + sources: `regulatory-knowledge.md` (values now tagged by product).
 
-## 2. What's NOT settled (do not trust yet — confirm before use)
-- **Still awaiting Brian (via Gary):** HOS log-audit interval · O. Reg. 638A mentorship · 30-day accident-preventability window · document-retention conventions · Ontario HOS set-fine.
-- **`$19,277`** — bad value removed; correct replacement not yet known.
+## 2. What's NOT settled (confirm before use)
+- Awaiting Brian: HOS log-audit interval · O. Reg. 638A mentorship · 30-day preventability window ·
+  document-retention · Ontario HOS set-fine. · **$19,277** replacement unknown.
+- **Code-audit gap:** only the medical value has been audited in code. The other 5 certified values
+  are trusted from Brian's number but NOT yet checked in the codebase for stray/US-framework variants.
 
-If a value isn't in section 1, treat it as section 2 — unconfirmed.
+## Product / security status
+- Scoring engine (CVORReady): **verified accurate** — 37/37 oracle vs documented rules, ESM test bug
+  fixed 2026-07-01. See `security-round2-scorecard.md`.
+- Round 2 OWASP/BOLA: see scorecard. Domain A (tenant isolation) verified on STAGING write-paths only
+  — prod + read-path still outstanding.
 
-## Security / product status
-Round 2 OWASP/BOLA program status now lives in `security-round2-scorecard.md` (evidence-backed,
-per the Replit pass of 2026-07-01). Read it before assuming any domain is "done" — several were
-found less closed than a prior summary claimed.
-
-## The one rule that protects all of this
-A value is settled **only** when Brian certifies it, through Gary. The model never marks a value ✅ on its own. Gary does every push. That's the whole guardrail — a wrong value reaching an auditor is the failure that can't be undone.
+## The one gate
+A value is settled only when Brian certifies it, through Gary. The model never marks ✅ itself.
+Gary does every push, batched at end of session. A wrong value reaching an auditor is the one
+failure that can't be undone.
 
 ---
-*Filing, cross-refs, sweeps, schema, naming — all moved to `MAINTENANCE.md`. You don't need to open it unless something there is flagged as touching a value.*
+*Filing/process detail: `MAINTENANCE.md`. You don't need it unless a line is flagged as touching a value.*

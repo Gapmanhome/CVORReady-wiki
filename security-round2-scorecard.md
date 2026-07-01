@@ -1,55 +1,54 @@
 ---
 type: security-scorecard
 program: "OWASP API Security Top 10 (2023), BOLA-weighted — Round 2"
-last_verified: "2026-07-01 (Replit read-only pass)"
+last_verified: "2026-07-01"
 rule: "enumerate, never assert — every status backed by file:line + environment"
 ---
 # Round 2 OWASP/BOLA — reconciled scorecard
 
-Status as of the **2026-07-01 Replit verification pass**. This supersedes any earlier prose summary.
-Where the pass and a prior claim disagreed, the **evidence wins** and the item is marked down.
-Governing rule: *enumerate, never assert*; every "verified" carries file:line + which environment.
+Status as of 2026-07-01. Evidence wins over prior prose summaries. Every "verified" carries
+file:line + environment. **Scope: CVORReady (cvorready.ca)** unless noted.
 
 ## Launch read
-Tenant isolation (Domain A) — the gate — is **verified on staging for write-paths only**. That is
-strong but NOT the "shut, prod-guarded" gate a prior summary implied. Two honest gaps: prod
-(heliumdb) not re-verified, and read-path (SELECT) leakage not covered. Treat A as *substantially
-verified, prod + read-path re-confirm outstanding.*
+Tenant isolation (Domain A) — the gate — is verified on **staging, write-paths only**. Strong but
+NOT a shut, prod-guarded gate. Prod (heliumdb) + read-path (SELECT) leakage still outstanding.
 
 ## Per-domain status
 
-| Domain | Status | Evidence (file:line) | Env |
+| Domain | Status | Evidence | Env |
 |---|---|---|---|
-| **A — Tenant isolation (write)** | ✅ verified | `isolation.test.ts` — 18/18 pass, 9 write routes, cross-fleet negative + own-fleet positive | **staging (Neon)** |
-| A — prod + read-path | ❌ outstanding | prod (heliumdb) not re-run; SELECT-path leakage not covered by the suite; "50/50 adversarial" not run this pass | — |
-| **B — Auth/session** | 🟡 mostly | managed-carrier guard `managed-carrier-guard.ts:18-22` @ `platform.ts:61`; no priv-esc path found | source |
-| B — invite role-cap | ❓ cannot-confirm | `/team/join/:token` handler not locatable this pass — read the handler body | source |
-| **C — Scoring oracle** | ❌ broken | `scoring-medical.test.ts` fails to execute (`require` in ESM `"type":"module"`); no interval assertion; no grade-band / empty-fleet / conviction-cap cases | dev |
-| **D — Grade LETTER** | ✅ verified | API-sourced on all live report surfaces; local fns 5-band match `scoring.ts:323-328` | source |
-| D — Grade COLOR | 🟡 diverges (cosmetic) | `shared-report.tsx:87`, `reports.tsx:314`, `reports-insurance.tsx:168`, `reports-monthly.tsx:174` — 3-band color; D renders same red as F | source |
-| **E1 — Structural** | ❌ stale / unconfirmed | phantom codes CR-CS-001/004 **still present** `carrierready-content.ts:1314/1388`, `admin.ts:3699`; `{{DEPOT_ADDRESS}}` + Section-5-in-PDF need a generated doc to confirm | source |
-| **E2 — Branding image** | ✅ clean | `nextgen-logo.png` is an **orphan** (0 code refs); embedded in no PDF path → **delete it** | dev |
-| **E3 — Content correctness** | ✅ closed | Brian's certified ledger IS E3 | — |
-| **F — Data lifecycle** | ❌ deferred | forward-looking; matters once real clients exist | — |
-| **G — Cost/resilience** | ❌ deferred | forward-looking | — |
-| **Gitleaks** | ❓ cannot-confirm | binary wouldn't install; manual partial scan 0 hits / 359 commits — not equivalent to gitleaks | git |
+| **A — Tenant isolation (write)** | ✅ verified | `isolation.test.ts` 18/18, 9 write routes, cross-fleet neg + own-fleet pos | staging (Neon) |
+| A — prod + read-path | ❌ outstanding | prod not re-run; SELECT-path not covered; 50/50 adversarial not re-run | — |
+| **B — Auth/session** | 🟡 mostly | managed-carrier guard `managed-carrier-guard.ts:18-22` @ `platform.ts:61`; no priv-esc found | source |
+| B — invite role-cap | ❓ cannot-confirm | `/team/join/:token` handler not located this pass | source |
+| **C — Scoring engine** | ✅ **VERIFIED 2026-07-01** | ESM test bug FIXED (`require`→dynamic import); oracle 37/37 pass, expected values hand-derived from documented rules (grade bands, pillar weights, conviction cap, medical intervals, empty/worst-case). Regression test now exists. | dev, frozen clock, no DB |
+| **D — Grade LETTER** | ✅ verified | API-sourced all live surfaces; 5-band match `scoring.ts:324-328` | source |
+| D — Grade COLOR | 🟡 diverges (cosmetic) | 4 report pages 3-band color; D renders same red as F | source |
+| **E1 — Structural** | ❌ stale | phantom codes CR-CS-001/004 still present; DEPOT_ADDRESS + Section-5 need a generated doc | source |
+| **E2 — Branding image** | ✅ clean | `nextgen-logo.png` orphan (0 refs) → delete | dev |
+| **E3 — Content correctness** | 🟡 partial | Medical value fully corrected + verified. **Other 5 certified values NOT yet code-audited** — the US/Ontario conflation pattern means this is real risk, not bookkeeping. | — |
+| **F — Data lifecycle** | ❌ deferred | needed for real clients + Geotab partner terms (privacy, breach 24-72h, data handling) | — |
+| **G — Cost/resilience** | ❌ deferred | per-document LLM cost at scale | — |
+| **Gitleaks** | ❓ cannot-confirm | binary wouldn't install; manual partial 0/359 commits — not equivalent | git |
 
-## Open fix items (proposed by the pass — NOT applied; Gary disposes)
+## Scoring verification detail (Domain C — closed this session)
+- ESM bug: `require()` in a `"type":"module"` package → converted to dynamic `await import()`
+  (static import would hoist before the Date-freeze). Test now executes.
+- `ageAdjustedMedicalIntervalDays` had `export` added (visibility only, zero logic) to be testable.
+  NOTE: it is a **private function nothing calls today** — correct + tested, but confirm it gets
+  wired in wherever future "next renewal due" logic should use it. A correct uncalled fn does nothing.
+- Oracle proved the engine computes what the rules say (grade boundaries flip correctly; empty fleet
+  = 58, no crash; conviction penalty caps at 36; intervals return 1825/1095/365; expiry warn/overdue
+  fire at right days). This tests the MATH given correct inputs — it does NOT test that the app feeds
+  correct inputs (real medical dates, conviction counts). Input-fidelity is a separate later check.
+- Boundary quirk (not a fail): `/365.25` divisor keeps a driver in the younger band ~1 day past the
+  exact birthday. No rule specifies the divisor — flag for Brian if the 1-day edge matters.
 
-1. ⚠️ **URGENT — `carrierready-content.ts:107`**: "every 2 years (730 days)" → "every 3 years (1,095 days)".
-   The only wrong value on a **live, auditor-facing** surface. TOUCHES A VALUE.
-2. **`scoring.ts:56`**: 730 → 1095, fix the "Biennial" comment. Dead function today, but fix before it's wired.
-3. **Delete `assets/nextgen-logo.png`** — orphan binary, accidental-embed risk.
-4. **Repair `scoring-medical.test.ts`** (ESM import) so Domain C can run; add the interval assertion + boundary cases.
-5. **Re-verify Domain A on prod + read-path**; run the 50/50 adversarial to restore the full gate claim.
-6. **Read `/team/join/:token`** to confirm role comes from the invite record, not user input.
-7. **Confirm the generator question** — one (PDFKit) or two (Puppeteer too)? Resolves whether the
-   Half-Rendered Change class and the ledger's two-generator note are stale.
-8. **Run real gitleaks** (full history) when network allows.
-
-## Note — `scoring.ts:99` (not a regulatory value)
-A separate `730` at `scoring.ts:99` is a UX warning→overdue threshold for abstract/annual-review
-age. No standard cited; it *does* affect pillar score. Not a compliance value — flag for design review,
-don't "fix" it to 1095.
-EOF
-echo "scorecard created"
+## Open fix items (proposed — Gary disposes)
+1. **Re-verify Domain A on prod + read-path**; re-run 50/50 adversarial to restore the full gate.
+2. **Code-audit the other 5 certified values** (collision, HOS, cargo, critical-injury, MELT) for
+   stray/US-framework variants — same enumerate-diagnostic used for medical. Highest compliance lever.
+3. Repair/keep the scoring regression test in CI so the medical fix can't drift.
+4. Confirm the dead `ageAdjustedMedicalIntervalDays` is wired where intended.
+5. E1 phantom codes; delete orphan `nextgen-logo.png`; grade-color 5-band; real gitleaks.
+6. Data-governance layer (F) for client-facing + Geotab partner obligations.

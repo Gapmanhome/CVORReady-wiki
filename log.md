@@ -43,3 +43,34 @@ commercial-driver standard, MTO Truck Handbook, mto.gov.on.ca / CCMTA). Ledger c
 with the sourced basis + the age-46 boundary. Value fully certified. Remaining: apply the code
 correction (content.ts:107 auditor-facing + scoring.ts:56) via the CVORReady Replit prompt — the
 live product still ships 730 until that runs.
+
+## [2026-07-01] fix | Medical-interval sweep — CVORReady, 9 locations
+Full enumerate-diagnostic found the interval wrong in 9 CVORReady locations (DQ form both sections,
+2 scenarios, detail text, exam question, 2 emails, email comment, phase5 script) — all US/FMCSA
+values ("2yr→annual→6mo", 12/24-month card) dropped into Ontario age-banded fields, plus 2 wrong
+citations (339/05, NSC Std 6). All corrected to 5/3/1 (1825/1095/365) with O. Reg. 340/94 + CCMTA.
+Cargo scenario line fixed (250→240). Sourced against 3 official refs; Brian confirmed. Not deployed.
+
+## [2026-07-01] verify | Scoring engine accuracy — CVORReady
+ESM test bug fixed (require→dynamic import; static import would hoist before Date-freeze). Built an
+oracle with expected values hand-derived from documented rules (not engine output). 37/37 pass:
+grade boundaries, empty fleet (=58, no crash), conviction cap (=36), age intervals (1825/1095/365),
+expiry warn/overdue windows. Engine is accurate per its rules. Caveats: tests math given correct
+inputs, not input fidelity; `ageAdjustedMedicalIntervalDays` is a private fn nothing calls (confirm
+wiring). Regression test now exists.
+
+## [2026-07-01] correct | Architecture — CVORReady and ExeSketch are SEPARATE products
+Root cause of this session's confusion: the wiki blended two products into one architecture model.
+CVORReady (cvorready.ca) = platform, renders from source, 1 generator, no live content DB. ExeSketch
+(exesketch.com) = generates compliance docs, live content DB (carrierready_templates.content), 2
+generators (Puppeteer + PDFKit). Same doc codes, different meanings across the two. ExeSketch pass
+confirmed it clean on both cargo + medical. All architecture claims now product-tagged; the old
+"single shared DB / two generators / live immediately" note was ExeSketch-only, wrongly applied to
+CVORReady. Half-Rendered-Change class rescoped to ExeSketch. Rule added: every prompt names its product.
+
+## [2026-07-01] close | Session write-back (batched, one diff)
+Changed: regulatory-knowledge.md (values tagged by product + medical fix recorded), START-HERE.md
+(product distinction + code-audit gap), security-round2-scorecard.md (Domain C verified), index.md,
+log.md. Delete pages-staging-medical-exam-interval.md (promoted). Open: code-audit the other 5
+certified values (US/Ontario conflation risk); Domain A prod+read-path; confirm dead interval fn
+wiring; Geotab integration is net-new (SDK Add-In/data connector, not yet built).
